@@ -1,14 +1,10 @@
-"""
-Name: Choo Jun Yi
-Student ID: 30219396
-Date: 6/9/2019
-"""
-
 def best_score(pile1,pile2):
     n1 = len(pile1)+1
     n2 = len(pile2)+1
     decision_array = []
-    memo =[]   # create memoization table
+    
+    # create memoization table
+    memo =[]   
     for i in range(n2):
         memo.append([(0,0)]*(n1))
     memo[0][0] = (0,0)
@@ -31,7 +27,8 @@ def best_score(pile1,pile2):
     # Constructing base case for the first column
     for j in range(2,len(pile2)+1):
         memo[j][0] = ((pile2[j-1]+memo[j-2][0][0]),memo[j-1][0][0])
-
+    
+    #proceed to fill up the memoization table
     for j in range(1,n2):
         for i in range(1,n1):
             if (pile1[i-1]+memo[j][i-1][1])>=(pile2[j-1]+memo[j-1][i][1]):
